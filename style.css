@@ -79,20 +79,39 @@ em {
 
 /* ── Buttons ── */
 .btn-outline {
-  display: inline-block;
-  padding: 16px 48px;
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  padding: 22px 40px;
   border: 1px solid var(--ink);
-  font-family: var(--serif);
+  border-radius: 4px;
+  font-family: var(--sans);
   font-size: .9rem;
-  letter-spacing: .25em;
-  transition: background .35s, color .35s;
+  font-weight: 400;
+  letter-spacing: .2em;
+  text-align: center;
+  min-height: 60px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .35s, color .35s, box-shadow .35s;
 }
-.btn-outline:hover { background: var(--ink); color: var(--white); }
+.btn-outline:hover {
+  background: var(--ink);
+  color: var(--white);
+  box-shadow: 0 8px 24px -8px rgba(26,24,20,.3);
+}
 .btn-outline--light {
-  border-color: rgba(74,42,58,.4);
+  border-color: rgba(74,42,58,.5);
   color: #3a1a2a;
 }
-.btn-outline--light:hover { background: #3a1a2a; color: var(--white); border-color: #3a1a2a; }
+.btn-outline--light:hover {
+  background: #3a1a2a;
+  color: var(--white);
+  border-color: #3a1a2a;
+  box-shadow: 0 8px 24px -8px rgba(58,26,42,.35);
+}
 
 
 /* ================================================
