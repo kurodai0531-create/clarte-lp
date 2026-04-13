@@ -170,15 +170,13 @@ em {
 }
 .header__nav a:hover { color: var(--ink); }
 .header__shop {
-  padding: 9px 22px;
-  border: 1px solid var(--ink);
   font-family: var(--serif);
   font-size: .78rem;
   letter-spacing: .22em;
   font-weight: 400;
-  transition: background .3s, color .3s;
+  transition: color .3s;
 }
-.header__shop:hover { background: var(--ink); color: var(--white); }
+.header__shop:hover { color: var(--ink-sub); }
 
 @media (max-width: 900px) {
   .header__nav { display: none; }
@@ -878,7 +876,7 @@ em {
   font-size: .95rem;
 }
 .review__text {
-  font-family: var(--serif);
+  font-family: "Noto Serif JP", serif;
   font-size: 1rem;
   font-style: italic;
   line-height: 2.1;
@@ -1053,14 +1051,14 @@ em {
   margin-top: 12px;
 }
 .cta__price {
-  font-family: var(--sans);  /* Noto Sans JP — Figmaで編集可能 */
+  font-family: "Noto Serif JP", serif;
   margin-bottom: 12px;
 }
 .cta__price strong {
-  font-family: var(--sans);
+  font-family: "Noto Serif JP", serif;
   font-size: 3.2rem;
-  font-weight: 500;
-  letter-spacing: .02em;
+  font-weight: 400;
+  letter-spacing: .04em;
   color: #1a1a2a;
 }
 .cta__price span {
