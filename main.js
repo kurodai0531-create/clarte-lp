@@ -31,9 +31,57 @@ document.querySelectorAll('.faq-item__q').forEach(btn => {
   });
 });
 
+// ── Modal ──
+const overlay  = document.getElementById('modalOverlay');
+const modalEl  = document.getElementById('modal');
+const modalBody= document.getElementById('modalBody');
+const modalClose = document.getElementById('modalClose');
+
+const modalMap = {
+  tokusho: 'tpl-tokusho',
+  privacy:  'tpl-privacy',
+  contact:  'tpl-contact',
+};
+
+function openModal(key) {
+  const tpl = document.getElementById(modalMap[key]);
+  if (!tpl) return;
+  modalBody.innerHTML = '';
+  modalBody.appendChild(tpl.content.cloneNode(true));
+  overlay.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  overlay.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('[data-modal]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    openModal(link.dataset.modal);
+  });
+});
+
+modalClose.addEventListener('click', closeModal);
+overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// お問い合わせフォーム送信
+function handleContactSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.modal__submit');
+  btn.textContent = '送信しました。ありがとうございます。';
+  btn.disabled = true;
+  btn.style.background = '#a08060';
+  e.target.querySelectorAll('input, select, textarea').forEach(el => el.disabled = true);
+}
+
 // ── Smooth scroll ──
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
+    if (a.dataset.modal) return; // モーダルリンクはスキップ
     const id = a.getAttribute('href');
     if (id.length > 1) {
       const target = document.querySelector(id);

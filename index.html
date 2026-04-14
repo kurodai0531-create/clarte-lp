@@ -342,14 +342,90 @@
       </div>
       <p class="footer__tagline">透きとおる髪へ、今夜から。</p>
       <nav class="footer__nav">
-        <a href="#">特定商取引法に基づく表示</a>
-        <a href="#">プライバシーポリシー</a>
-        <a href="#">全成分表示</a>
-        <a href="#">お問い合わせ</a>
+        <a href="#" data-modal="tokusho">特定商取引法に基づく表示</a>
+        <a href="#" data-modal="privacy">プライバシーポリシー</a>
+        <a href="#" data-modal="contact">お問い合わせ</a>
       </nav>
       <p class="footer__copy">&copy; 2026 Clarté. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- ========== MODALS ========== -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <button class="modal__close" id="modalClose" aria-label="閉じる">✕</button>
+      <div class="modal__body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- 特定商取引法に基づく表示 -->
+  <template id="tpl-tokusho">
+    <h2 class="modal__title">特定商取引法に基づく表示</h2>
+    <table class="modal__table">
+      <tr><th>販売業者</th><td>株式会社 Clarté Japan</td></tr>
+      <tr><th>代表責任者</th><td>村山 克美</td></tr>
+      <tr><th>所在地</th><td>〒150-0001 東京都渋谷区神宮前3丁目○○番○号</td></tr>
+      <tr><th>電話番号</th><td>03-XXXX-XXXX（受付時間：平日10:00〜17:00）</td></tr>
+      <tr><th>メールアドレス</th><td>info@clarte-japan.jp</td></tr>
+      <tr><th>販売URL</th><td>https://clarte-japan.jp/</td></tr>
+      <tr><th>販売価格</th><td>各商品ページをご参照ください（税込表示）</td></tr>
+      <tr><th>送料</th><td>全国送料無料</td></tr>
+      <tr><th>支払方法</th><td>クレジットカード（VISA・MasterCard・JCB・AMEX）／コンビニ払い／銀行振込</td></tr>
+      <tr><th>支払時期</th><td>クレジットカード：ご注文時　／　コンビニ・銀行振込：ご注文後7日以内</td></tr>
+      <tr><th>商品の引き渡し時期</th><td>ご入金確認後3〜5営業日以内に発送</td></tr>
+      <tr><th>返品・交換について</th><td>商品到着後30日以内、未開封・未使用のものに限り返品・交換を承ります。お客様都合による返品の場合、送料はお客様負担となります。不良品の場合は当社にて送料を負担いたします。</td></tr>
+      <tr><th>その他特記事項</th><td>商品の性質上、開封後の返品はお断りする場合がございます。</td></tr>
+    </table>
+  </template>
+
+  <!-- プライバシーポリシー -->
+  <template id="tpl-privacy">
+    <h2 class="modal__title">プライバシーポリシー</h2>
+    <p class="modal__lead">株式会社 Clarté Japan（以下「当社」）は、お客様の個人情報の保護を重要な責務と考え、以下の方針に基づき適切に取り扱います。</p>
+    <h3 class="modal__subtitle">1. 取得する個人情報</h3>
+    <p>氏名、住所、電話番号、メールアドレス、購入履歴など、サービス提供に必要な情報を取得します。</p>
+    <h3 class="modal__subtitle">2. 利用目的</h3>
+    <p>商品の発送・お支払い処理・お問い合わせへの対応・サービス改善・新商品・キャンペーン情報のご案内のために使用します。</p>
+    <h3 class="modal__subtitle">3. 第三者提供</h3>
+    <p>法令に基づく場合を除き、お客様の同意なく個人情報を第三者に提供することはありません。</p>
+    <h3 class="modal__subtitle">4. 安全管理</h3>
+    <p>個人情報への不正アクセス・紛失・破損・改ざん・漏洩を防ぐため、適切なセキュリティ対策を実施します。</p>
+    <h3 class="modal__subtitle">5. 開示・訂正・削除</h3>
+    <p>お客様ご本人からの個人情報の開示・訂正・削除のご要望には、本人確認のうえ対応いたします。</p>
+    <h3 class="modal__subtitle">6. お問い合わせ</h3>
+    <p>個人情報に関するお問い合わせは info@clarte-japan.jp までご連絡ください。</p>
+    <p class="modal__date">制定日：2026年4月14日</p>
+  </template>
+
+  <!-- お問い合わせ -->
+  <template id="tpl-contact">
+    <h2 class="modal__title">お問い合わせ</h2>
+    <p class="modal__lead">ご不明点・ご要望がございましたら、以下のフォームよりお気軽にお問い合わせください。<br />平日10:00〜17:00に順次ご返答いたします。</p>
+    <form class="modal__form" onsubmit="handleContactSubmit(event)">
+      <div class="modal__field">
+        <label>お名前 <span class="modal__required">必須</span></label>
+        <input type="text" placeholder="例）山田 花子" required />
+      </div>
+      <div class="modal__field">
+        <label>メールアドレス <span class="modal__required">必須</span></label>
+        <input type="email" placeholder="例）hanako@example.com" required />
+      </div>
+      <div class="modal__field">
+        <label>お問い合わせ種別</label>
+        <select>
+          <option>商品について</option>
+          <option>ご注文・配送について</option>
+          <option>返品・交換について</option>
+          <option>その他</option>
+        </select>
+      </div>
+      <div class="modal__field">
+        <label>お問い合わせ内容 <span class="modal__required">必須</span></label>
+        <textarea rows="5" placeholder="ご質問・ご要望をご記入ください" required></textarea>
+      </div>
+      <button type="submit" class="modal__submit">送信する</button>
+    </form>
+  </template>
 
   <script src="main.js"></script>
 </body>
